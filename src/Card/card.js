@@ -19,7 +19,7 @@ const Card = ({ post }) => {
                     </span>
                 </section>
                 <section className="card-image">
-                    <img src={require("../images/10x.png")} alt="place" />
+                    <img src={""+post.PostImage} alt="place" />
                 </section>
                 <section className="card-actions">
                     <span className="card-actions__heart">
