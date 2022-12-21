@@ -1,0 +1,33 @@
+.form-container {
+    width: 480px;
+    border: 1px solid gray;
+    padding: 30px;
+    border-radius: 5px;
+    margin: 200px auto;
+}
+
+.form-container input {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    padding: 0.5px;
+    text-align: center;
+}
+
+.file-input {
+    width: 478px;
+}
+
+.file-location {
+    margin-left: 134px;
+}
+
+.file-desc {
+    width: 478px;
+
+}
+
+.form-container button {
+    text-align: center;
+    margin-left: 216px;
+}
