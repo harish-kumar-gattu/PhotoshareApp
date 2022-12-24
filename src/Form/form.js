@@ -12,7 +12,7 @@ const Userform = () => {
     formData.append("location", post.location)
     formData.append("description", post.description)
 
-    const apiEndPoint = "http://localhost:5000/form-data";
+    const apiEndPoint = 'https://photoshare-app.onrender.com/form-data';
     const config = {
         headers: { "content-type": "multipart/form-data" }
     }
