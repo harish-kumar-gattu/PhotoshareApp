@@ -1,23 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from "axios";
 import "./form.css"
 import { useNavigate } from 'react-router-dom';
 
 const Userform = () => {
     const navigate = useNavigate();
-    const onSubmit = async (event) => {
-        event.preventDefault();
+    const [post, setPost] = useState({ PostImage: null, name: "", location: "", description: "" })
+    let formData = new FormData();
+    formData.append("PostImage", post.PostImage);
+    formData.append("name", post.name)
+    formData.append("location", post.location)
+    formData.append("description", post.description)
+    console.log(formData);
+    const apiEndPoint = "http://localhost:5000/form-data";
+    const config = {
+        headers: { "content-type": "multipart/form-data" }
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+        axios.post(apiEndPoint, formData, config)
+            .then(res => {
+                if (res.status === 200) {
+                    navigate("/posts")
+                }
 
-        navigate(`/posts`);
-
+            })
+            .catch(error => console.log(error))
     }
     return (
         <div className='form-container'>
-            <form action='https://photoshare-app.onrender.com/form-data' method='POST' encType='multipart/form-data' >
-                <input className='file-input' type="file" name="PostImage" /><br />
-                <input type="text" name='name' placeholder='name' />
-                <input className='file-location' type="text" name='location' placeholder='location' /><br />
-                <input className='file-desc' type="text" name='description' placeholder='description' /><br />
-                <button type="submit" onSubmit={onSubmit}>Post </button>
+            <form onSubmit={handleSubmit} id="formInput" value="">
+                <input name='PostImage' type="file" onBlur={(e) => {
+                    setPost({ ...post, PostImage: e.target.files[0] })
+                }} /><br />
+                <input type="text" name='name' placeholder='name' onBlur={(e) => {
+                    setPost({ ...post, name: e.target.value })
+                }} />
+                <input className='file-location' type="text" name='location' placeholder='location' onBlur={(e) => {
+                    setPost({ ...post, location: e.target.value })
+                }} /><br />
+                <input className='file-desc' type="text" name='description' placeholder='description' onBlur={(e) => {
+                    setPost({ ...post, description: e.target.value })
+                }} /><br />
+                <button type="submit" > Post </button>
             </form>
         </div>
     )
