@@ -11,14 +11,14 @@ const Userform = () => {
     formData.append("name", post.name)
     formData.append("location", post.location)
     formData.append("description", post.description)
-    console.log(formData);
+
     const apiEndPoint = "http://localhost:5000/form-data";
     const config = {
         headers: { "content-type": "multipart/form-data" }
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+
         axios.post(apiEndPoint, formData, config)
             .then(res => {
                 if (res.status === 200) {
