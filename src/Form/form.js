@@ -31,7 +31,7 @@ const Userform = () => {
     return (
         <div className='form-container'>
             <form onSubmit={handleSubmit} id="formInput" value="">
-                <input name='PostImage' type="file" onBlur={(e) => {
+                <input className='file-input' name='PostImage' type="file" onBlur={(e) => {
                     setPost({ ...post, PostImage: e.target.files[0] })
                 }} /><br />
                 <input type="text" name='name' placeholder='name' onBlur={(e) => {
